@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class LicenseHeader {
+public class Main {
     public static void main(String[] args) throws IOException {
         //                     args[0]                    args[1]               args[2]
         byteOriented("/tmp/dir/license", "/tmp/dir/src", ".java");

@@ -20,7 +20,7 @@ import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-public class CleanOldFiles {
+public class Main {
     /*
      * args[0] (String) = ruta directori
      * args[1] (int) = numero de dies
