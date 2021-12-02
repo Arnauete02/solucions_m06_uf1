@@ -44,24 +44,33 @@ public class Main {
     }
 
     static void addScore(String name, int points) throws IOException {
+        //creem una llista de resultats
         List<Score> scores = new ArrayList<>();
 
+        //provem a crear un bufferedReader en el cas de que si...
         try (BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(scoreFile))){
-            for (String line; (line = bufferedReader.readLine()) != null; ){
+            //fem un for que recorre linia per linia fins la última linia del bufferedReader
+            for (String line; (line = bufferedReader.readLine()) != null; ) {
+                //creem una array de String on separarem les línies per ":"
                 String[] fields = line.split(fieldSep);
+                //afegim a la llista el nou resultat amb el seu corresponents noms
                 scores.add(new Score(fields[0], Integer.parseInt(fields[1])));
             }
+            // en el cas de que no agafem l'excepció
         } catch (Exception e) {
 
         }
 
+        //en el cas de que hagues saltat no o si, afegirem igualtem el resultat amb el nom i punts otorgats
         scores.add(new Score(name, points));
 
+        //el que estem fent es ordenar-los, limitant la llista a 5.
         scores = scores.stream()
                 .sorted(Comparator.comparing(Score::getPoints).reversed())
                 .limit(5)
                 .collect(Collectors.toList());
 
+        //Escriurem al nostre ficher JSON els següents resultats.
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(scoreFile))){
             for (Score score:scores) {
                 bufferedWriter.write(score.name + fieldSep + score.points);
@@ -69,6 +78,7 @@ public class Main {
             }
         }
 
+        //Els imprimirem
         System.out.println("\033[31m** TOP 5 SCORE **\033[0m\n" + scores.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining("\n")));

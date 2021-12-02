@@ -1,4 +1,4 @@
-package Json2Yaml;
+package com.company.Json2Yaml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -131,7 +131,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-        Compose compose = objectMapper.readValue(Paths.get("C:\\Users\\arnau\\Documents\\DAM\\M06\\solucions_m06_uf1\\src\\Json2Yaml\\docker-compose.json").toFile(), Compose.class);
+        Compose compose = objectMapper.readValue(Paths.get("C:\\Users\\arnau\\Documents\\DAM\\M06\\solucions_m06_uf1\\src\\com.company.Json2Yaml\\docker-compose.json").toFile(), Compose.class);
 
         if(compose.version != null) {
             System.out.println("version: " + compose.version);
